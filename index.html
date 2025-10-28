@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator BMI</title>
+</head>
+<body>
+  <h2>Kalkulator</h2>
+
+  <script>
+    /*
+      Paweł Kopniewicz Kalkulator BMI
+    */
+
+    
+    const rokObliczen = 2025; 
+
+
+    let imie = prompt("Podaj swoje imię:");
+    let wzrostCm = prompt("Podaj swój wzrost w centymetrach (np. 175):");
+    let masaKg = prompt("Podaj swoją masę w kilogramach (np. 70):");
+
+   
+    console.log( typeof wzrostCm);
+
+    
+    wzrostCm = Number(wzrostCm);
+    masaKg = Number(masaKg);
+
+    let wzrostM = wzrostCm / 100;
+
+    const obliczBMI = (masa, wzrost) => {
+        return masa / Math.pow(wzrost, 2);
+    };
+ 
+
+    // oblicza bmi
+    let wynikBMI = obliczBMI(masaKg, wzrostM);
+
+
+    function ocenStan(bmi) {
+      if (bmi < 18.5) {
+        return "Niedowaga";
+      } else if (bmi >= 18.5 && bmi <= 24.9) {
+        return "Waga prawidłowa";
+      } else {
+        return "Nadwaga lub otyłość";
+      }
+    }
+
+
+    let kategorie = ['Niedowaga', 'Prawidłowa', 'Nadwaga'];
+    console.log("Dostępne kategorie BMI:");
+    for (let i = 0; i < kategorie.length; i++) {
+      console.log(`${i + 1}. ${kategorie[i]}`);
+    }
+
+    let ocena = ocenStan(wynikBMI);
+
+
+
+    let raport = `Rok: ${rokObliczen}\nImię: ${imie}\nTwoje BMI: ${wynikBMI.toFixed(2)}\nOcena: ${ocena}`;
+    alert(raport);
+
+    let daneHistoryczne = [20.5, 23.1, 25.8, 17.9, 30.0];
+    let nadwagaLubOtylosc = daneHistoryczne.filter(bmi => bmi >= 25);
+    
+
+    console.log("Dane historyczne BMI:", daneHistoryczne);
+    console.log("Wyniki kwalifikujące się jako 'Nadwaga lub otyłość':", nadwagaLubOtylosc);
+
+
+
+  </script>
+</body>
+</html>
